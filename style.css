@@ -1,1 +1,93 @@
 
+html, body{
+	width: 100%;
+	height: 100%;
+	margin: auto;
+}
+.big_main_window{
+	background-image: url('https://i.ytimg.com/vi/5FImmkU6Okk/maxresdefault.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	max-height: 1000px;
+	height: 100vh;
+	width: 100vw;
+
+}
+
+.logo_on_main{
+	margin-left: 45%;
+}
+
+.buttons_after_logo{
+	display: flex;
+	justify-content: space-around;
+}
+
+#m_button{
+	padding: 25px;
+	border-color: black;
+	border: none;
+	background: none;
+}
+
+#main_button{
+	width: 250px;
+	text-align: center;
+	padding: 14px 28px;
+	cursor: pointer;
+	background: none;
+	border: none;
+	font-size: 20px;
+	color: green;
+	//font-family: 'Orbitron', sans-serif;
+	font-family: 'Poiret One', cursive;
+}
+
+#main_button:hover{
+	background-color: green;
+	color: white;
+	font-size: 25px;
+	margin-bottom: -7px;
+}
+
+.text_in_bottom_main{
+	position: absolute;
+	bottom: 0px;
+	display: flex;
+}
+
+#bottom_text_main{
+	color: white;
+	font-size: 72px;
+	font-family: 'Poiret One', cursive;
+	padding-bottom: 25px;
+}
+#bottom_text_main_2{
+	color: white;
+	font-size: 72px;
+	font-family: 'Poiret One', cursive;
+	padding-bottom: 25px;
+	margin-left: 125px;
+}
+
+#main_vertical_line{
+	border-left: 2px solid green;
+	height: 72px;
+	margin-left: 125px;
+}
+
+.little_words{
+	padding-top: 45px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 36px;
+	//font-family: 'Orbitron', sans-serif;
+	font-family: 'Poiret One', cursive;
+}
+
+
+
+
+
+
