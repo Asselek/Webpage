@@ -18,7 +18,7 @@ html, body{
 	margin-left: 45%;
 }
 
-.buttons_after_logo{
+.buttons_after_logo, .buttons_after_logo_buttons{
 	display: flex;
 	justify-content: space-around;
 }
@@ -39,8 +39,16 @@ html, body{
 	border: none;
 	font-size: 20px;
 	color: green;
-	font-family: 'Poiret One', cursive;
+	//font-family: 'Poiret One', cursive;
+	font-family: 'Titillium Web', sans-serif;
+	//border: 1px solid white;
+	text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 }
+
 
 #main_button:hover{
 	background-color: green;
@@ -160,3 +168,75 @@ html, body{
 	font-size: 36px;
 	font-family: 'Poiret One', cursive;
 }
+
+.user_interface_block{
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	//border: 1px solid blue;
+}
+
+.interaction_board{
+	width: 80%;
+	height: 500px;
+	//border: 1px solid red;
+	display: flex;
+	//justify-content: space-around;
+	align-content: center;
+	
+}
+
+.fill_fields{
+	width: 180px;
+	//border: 1px solid red;
+	position: relative;
+	float: left;
+}
+
+.our_mission_text{
+	text-align: center;
+	width:100%;
+	font-size: 48px;
+	font-family: 'Poiret One', cursive;
+}
+
+input{
+	padding: 10px;
+	font-size: 14px;
+	margin-top: 5px;
+	background-color: green;
+	color: white;
+	text-align: center;
+}
+
+input:focus, textarea:focus, select:focus, button:focus{
+    outline: none;
+}
+
+::placeholder{
+	color: white;
+}
+
+#animal_find_input{
+	//border: 1px solid green;
+	cursor: pointer;
+	width: 171px;
+}
+.animal_output{
+	overflow: scroll;
+	border-left: 1px solid green;
+	margin-left: 10px;
+	background-image: url('https://cdn4.iconfinder.com/data/icons/no-plastic-line-save-the-earth/512/Poultry_death_caused_by_plastic-128.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+
+
+.sticky_end{
+	margin-top: 100px;
+	width: 100%;
+	border: 1px solid blue;
+	display: flex;
+}
+
