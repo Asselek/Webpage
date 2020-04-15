@@ -236,7 +236,48 @@ input:focus, textarea:focus, select:focus, button:focus{
 .sticky_end{
 	margin-top: 100px;
 	width: 100%;
-	border: 1px solid blue;
+	//border: 1px solid blue;
 	display: flex;
+	justify-content: space-around;
+	//background-color: green;
+	background-image: url('https://images.wallpaperscraft.com/image/elephant_savanna_sunset_143506_1920x1080.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom;
+	height: 225px;
+	padding-top: 35px;
+}	
+#a_link{
+	text-decoration: none;
+	color:green;	
+}
+
+#a_link:hover{
+	background-color: green;
+	color: white;
+	font-size: 25px;
+	margin-bottom: -7px;
+}
+
+
+.SMM{
+	padding: 5%;
+	display: flex;	
+}
+
+#bottom_vertical_line{
+	border-left: 1px solid white;
+	height: 200px;
+
+}
+
+.About, .About_text{
+	color: white;
+	padding-left: 5px;
+	padding-top: 4%;
+}
+
+.About{
+	text-align: center;
 }
 
