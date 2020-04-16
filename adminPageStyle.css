@@ -1,0 +1,91 @@
+html, body{
+	//width: 100%;
+	height: 100%;
+	margin: auto;
+}
+
+.admin_commands{
+	//border: 1px solid blue;
+	display: flex;
+	justify-content: space-around;
+	border-bottom: 1px solid black;
+}
+
+.b_com{
+	padding: 10px;
+	margin: 10px;
+	background-color: green;
+	color: white;
+}
+
+.visitor_b{
+	background-color: mediumorchid;
+}
+
+.animal_b{
+	background-color: orange;
+}
+
+.order_b{
+	background-color: #CCCC00;
+}
+
+.event_b{
+	background-color: lightcoral;
+}
+
+.donate_b{
+	background-color: darkcyan;
+}
+
+.staff_b{
+	background-color: grey;
+}
+
+
+#empty_space{
+	border-left: 1px solid green;
+}
+
+.input_area{
+	background-color: lightgrey;
+	width: 100%;
+	height: 30%;
+	border-radius: 5px;
+}
+
+.output_area{
+	background-color: darkgrey;
+	width: 100%;
+	height: 59.5%;
+	overflow: auto;
+	border-radius: 5px;
+}
+
+#select_button{
+	text-align: center;
+	visibility: visible;
+}
+
+#no_out{
+	text-align: center;
+	visibility: visible;
+}
+
+.fill_block{
+	width: 100%;
+	//border: 1px solid black;
+	height: 90%;
+}
+.action_area{
+	width: 100%;
+	//height: 90%;
+	display: inline-block;
+}
+
+.submit_bu{
+
+}
+
+
+/* working with visibility of inputs */

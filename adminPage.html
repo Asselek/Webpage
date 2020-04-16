@@ -1,0 +1,62 @@
+<html>
+<head>
+	<title>Admin page</title>
+	<link rel="stylesheet" type="text/css" href="adminPageStyle.css">
+	<script src = "adminPageScript.js"></script>
+
+</head>
+
+<body>
+
+
+	<div class = "admin_commands">
+		<!-- VISITOR COMMANDS -->
+		<button class = "b_com visitor_b" id="delete_visitor" onclick="del_v_f();">DELETE VISITOR</button>
+		<button class = "b_com visitor_b" id="get_visitor" onclick="get_v_f();">GET VISITOR INFO</button>
+		<button class = "b_com visitor_b" id="get_all_vis" onclick="get_all_v_f();">GET ALL VISITORS</button>
+
+
+
+		<!-- ANIMAL COMMANDS -->
+		<button class = "b_com animal_b" id="insert_ani" onclick="ins_a_f();">INSERT ANIMAL</button>
+		<button class = "b_com animal_b" id="delete_ani" onclick="del_a_f();">DELETE ANIMAL</button>
+		<button class = "b_com animal_b" id="update_ani" onclick="upd_a_f();">UPDATE ANIMAL</button>
+		<button class = "b_com animal_b" id="get_ani" onclick="get_a_f();">GET ANIMAL INFO</button>
+
+		<!-- ORDER COMMANDS -->
+		<button class = "b_com order_b" id="get_order" onclick="get_all_o();">GET ALL ORDERS</button>
+
+		<!-- EVENT COMMANDS -->
+		<button class = "b_com event_b" id="get_event" onclick="get_all_e();">GET ALL EVENTS</button>
+
+		<!-- ZOO COMMANDS -->
+		<button class = "b_com zoo_com_b" id="get_zoo" onclick="get_all_z();">GET ALL ZOO</button>
+
+		<!-- DONATE COMMANDS -->
+		<button class = "b_com donate_b" id="get_donate" onclick="get_all_d();">GET ALL DONATES</button>
+
+		<!-- STAFF COMMANDS -->
+		<button class = "b_com staff_b" id="insert_staff" onclick="ins_saf();">INSERT STAFF</button>
+		<button class = "b_com staff_b" id="delete_staff" onclick="del_saf();">DELETE STAFF</button>
+		<button class = "b_com staff_b" id="get_all_staff" onclick="get_all_saf();">GET ALL STAFF</button>
+		
+
+	</div>
+
+	<div class = "input_area">
+		<div id = "select_button">SELECT COMMAND</div>
+
+		<div id = "action_area_id" class = "action_area">
+			
+		</div>
+
+
+	</div>
+
+	<div class = "output_area">
+		<div id = "no_out">NO OUTPUT</div>
+	</div>
+
+</body>
+
+</html>
