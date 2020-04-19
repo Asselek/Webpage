@@ -26,4 +26,45 @@
 
 <?php
 
+$con = mysqli_connect("localhost","root","","user");
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if(isset($_POST['submit'])){
+		$v_name = mysqli_escape_string($con, $_POST['name']);
+		$v_email = mysqli_escape_string($con, $_POST['email']);
+		$v_pass = mysqli_escape_string($con, $_POST['pass']);
+
+		function validation($form_data){
+			$form_data = trim( stripcslashes( htmlspecialchars( $form_data ) ) );
+			return $form_data;
+		}
+
+		$name = validation($v_name);
+		$email = validation($v_email);
+		$pass = validation($v_pass);
+
+		if(!empty($name) && !empty($email) && !empty($pass)){
+			$check = "SELECT 'u_email' FROM 'user_detail' WHERE 'u_email'='$email'";
+			$check_query = mysqli_query($con, $check);
+
+			if(mysqli_num_rows($check_query) > 0){
+				$msg = "This Email is Already Registered";
+			}
+			else{
+				$hash_pass = password_hash($pass, PASSWORD_BCRYPT);
+				$insert = "INSERT INTO 'user_detail'('u_name','u_email','u_pass') VALUES('$name','$email','$hash_pass')";
+
+				if(mysqli_query($con, $insert)){
+					header("Refresh:0");
+				}
+				else{
+					$msg = "You are not registered";
+				}
+			}
+		}
+		else{
+			$msg = "Empty Field Found";
+		}
+	}
+}
 ?>
