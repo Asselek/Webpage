@@ -30,3 +30,33 @@ header a:hover{
   	padding: 30px;
   	background-color: white;
 }
+.toPlace{
+	display: flex;
+	justify-content: center;
+}
+.writer{
+	margin-bottom: 10px;
+	border-radius: 5px;
+	width: 300px;
+	height: 30px;
+}
+.btn{
+	width: 150px;
+	height: 35px;
+	cursor: pointer;
+	background-color: lightblue;
+	border: none;
+	border-radius: 7px; 
+}
+.btn:hover{
+	color: lightblue;
+	background-color: green;
+}
+footer p{
+	margin: 0;
+  	position: absolute;
+  	top: 80%;
+  	left: 50%;
+  	transform: translate(-50%, -60%);
+  	z-index: 10;
+}
