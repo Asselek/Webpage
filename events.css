@@ -1,5 +1,16 @@
+body{
+	background-color: #7DCEA0;
+}
 .content{
-	width: 90%;
+	align-items: center;
+	position: relative;
+	padding-bottom: 100px;
+}
+.title{
+	padding-left: 490px;
+	font-size: 80px;
+	color:white;
+	font-family: Brush Script MT, Brush Script Std, cursive
 }
 .cards{
 	margin: 0 auto;
