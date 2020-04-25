@@ -6,8 +6,8 @@ html, body{
 
 .admin_commands{
 	//border: 1px solid blue;
-	display: flex;
-	justify-content: space-around;
+	display: block;
+	/*justify-content: space-around;*/
 	border-bottom: 1px solid black;
 }
 
@@ -85,6 +85,11 @@ html, body{
 
 .submit_bu{
 
+}
+
+a{
+	padding: 10px;
+	text-decoration: none;
 }
 
 
