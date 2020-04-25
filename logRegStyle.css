@@ -1,62 +1,66 @@
-body{
-	background-color: rgba(40,40,40,.5);
-}
 header a{
-	margin: 0;
-  	position: absolute;
-  	top: 15%;
-  	left: 50%;
-  	transform: translate(-50%, -60%);
-  	z-index: 10;
-  	color: black;
-  	border: 1px solid black;
-  	padding: 10px;
-  	border-radius: 5px;
-  	text-decoration: none;
-  	background-color: white;
+  margin: 0;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    z-index: 10;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 24px;
+    text-decoration: none;
+    background-color: white;
 }
 header a:hover{
-	color: white;
-	background-color: black;
+  color: white;
+  background-color: black;
 }
 .container{
-	margin: 0;
-  	position: absolute;
-  	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -60%);
-  	border: 2px solid red;
-  	border-radius: 5px;
-  	padding: 30px;
-  	background-color: white;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  border: 2px solid red;
+  border-radius: 5px;
+  padding: 30px;
+  background: #A2D9CE;
 }
 .toPlace{
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
+}
+.toPlace input{
+  border-radius: 24px;
+  outline: none;
+  padding: 10px 10px;
+  border-style: none;
+  color: rgb(99,34,123);
 }
 .writer{
-	margin-bottom: 10px;
-	border-radius: 5px;
-	width: 300px;
-	height: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  width: 300px;
+  height: 30px;
 }
 .btn{
-	width: 150px;
-	height: 35px;
-	cursor: pointer;
-	background-color: lightblue;
-	border: none;
-	border-radius: 7px; 
+  width: 150px;
+  height: 35px;
+  cursor: pointer;
+  background-color: lightblue;
+  border: none;
+  border-radius: 7px; 
 }
 .btn:hover{
-	color: lightblue;
-	background-color: green;
+  color: lightblue;
+  background-color: green;
 }
 footer p{
-	margin: 0;
-  	position: absolute;
-  	top: 80%;
-  	left: 50%;
-  	transform: translate(-50%, -60%);
-  	z-index: 10;
+  margin: 0;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    z-index: 10;
 }
