@@ -2,6 +2,7 @@ html, body{
 	width: 100%;
 	height: 100%;
 	margin: auto;
+	overflow-x: hidden;
 }
 .big_main_window{
 	background-image: url('https://i.ytimg.com/vi/5FImmkU6Okk/maxresdefault.jpg');
@@ -15,22 +16,28 @@ html, body{
 }
 
 .logo_on_main{
-	margin-left: 45%;
+	display: flex;
+	align-content: center;
+}
+#main_logo_icon{
+	margin: auto;
 }
 
 .buttons_after_logo, .buttons_after_logo_buttons{
 	display: flex;
 	justify-content: space-around;
+	margin: 5px;
+
 }
 
-#m_button{
-	padding: 25px;
+/*#m_button{
+	padding: 15px;
 	border-color: black;
 	border: none;
 	background: none;
-}
+}*/
 
-#main_button{
+/*#main_button{
 	width: 250px;
 	text-align: center;
 	padding: 14px 28px;
@@ -48,19 +55,69 @@ html, body{
     -1px 1px 0 #000,
      1px 1px 0 #000;
 }
+*/
 
-
-#main_button:hover{
+/*#main_button:hover{
 	background-color: green;
 	color: white;
 	font-size: 25px;
 	margin-bottom: -7px;
 }
+*/
+
+.hvr-shutter-out-vertical {
+	padding: 25px;
+	font-size: 36px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  background: none;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-shutter-out-vertical:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #F1C40F;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-shutter-out-vertical:hover, .hvr-shutter-out-vertical:focus, .hvr-shutter-out-vertical:active {
+  color: white;
+}
+.hvr-shutter-out-vertical:hover:before, .hvr-shutter-out-vertical:focus:before, .hvr-shutter-out-vertical:active:before {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}
+
+
+
 
 .text_in_bottom_main{
-	position: absolute;
-	bottom: 0px;
 	display: flex;
+	max-height: 1080px;
+	height: 50%;
 }
 
 #bottom_text_main{
@@ -68,6 +125,8 @@ html, body{
 	font-size: 72px;
 	font-family: 'Poiret One', cursive;
 	padding-bottom: 25px;
+	margin: auto;
+	margin-bottom: 0px;
 }
 #bottom_text_main_2{
 	color: white;
@@ -75,12 +134,17 @@ html, body{
 	font-family: 'Poiret One', cursive;
 	padding-bottom: 25px;
 	margin-left: 125px;
+	margin: auto;
+	margin-bottom: 0px;
+
 }
 
 #main_vertical_line{
-	border-left: 2px solid green;
+	border-left: 2px solid #FCF3CF;
 	height: 72px;
 	margin-left: 125px;
+	margin: auto;
+	margin-bottom: 0px;
 }
 
 .little_words{
@@ -112,6 +176,7 @@ html, body{
 	height: 350px;
 	background-position: center;
 	background-size: cover;
+	transition: width 0.5s;
 }
 
 .animal_group_description_text{
@@ -132,8 +197,8 @@ html, body{
 	visibility: hidden;
 }
 .big_block:hover {
-	box-shadow: inset 0px 0px 10px 5px;
-
+	/*box-shadow: inset 0px 0px 10px 5px;*/
+	width: 450px;
 }
 
 .cats{
@@ -201,7 +266,7 @@ html, body{
 }
 
 input{
-	padding: 10px;
+	padding: 5px;
 	font-size: 14px;
 	margin-top: 5px;
 	background-color: green;
@@ -244,10 +309,18 @@ input:focus, textarea:focus, select:focus, button:focus{
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: bottom;
+	width: 100vw;
 	height: 225px;
 	padding-top: 35px;
+
 }	
-#a_link{
+
+a{
+	color: #F4D03F;
+    text-decoration: none;
+   font-family: 'Spartan', sans-serif;
+}
+/*#a_link{
 	text-decoration: none;
 	color:green;	
 }
@@ -257,27 +330,79 @@ input:focus, textarea:focus, select:focus, button:focus{
 	color: white;
 	font-size: 25px;
 	margin-bottom: -7px;
-}
+}*/
 
 
 .SMM{
 	padding: 5%;
 	display: flex;	
+
 }
 
 #bottom_vertical_line{
 	border-left: 1px solid white;
 	height: 200px;
-
 }
 
 .About, .About_text{
 	color: white;
 	padding-left: 5px;
 	padding-top: 4%;
+
 }
 
 .About{
 	text-align: center;
 }
 
+
+select{
+	border: 1px solid green;
+	margin: 2px;
+}
+
+
+/* UGA */
+
+#user_image{
+	display: none;
+}
+
+#admin_image{
+	display: none;
+}
+
+.admin_page_css{
+	font-size: 14px;
+	height: 10%;
+	margin: auto;
+	padding: auto;
+
+}
+
+#guest_image{
+	//display: none;
+}
+
+.UGA_place{
+	display: flex;
+	/*border: 1px solid blue;*/
+	justify-content: space-around;
+}
+
+.UGA_block{
+	display: flex;
+	/*background-color: #FEF9E7;*/
+	padding-right: 15px;
+	border-radius: 20px;
+	margin: 10px;
+	border: 1px solid black;
+
+}
+
+#centered_text{
+	margin: auto;
+	font-size: 24px;
+	color: black;
+	font-family: 'Spartan', sans-serif;
+}
