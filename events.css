@@ -7,10 +7,19 @@ body{
 	padding-bottom: 100px;
 }
 .title{
-	padding-left: 490px;
+	text-align: center;
 	font-size: 80px;
 	color:white;
 	font-family: Brush Script MT, Brush Script Std, cursive
+}
+
+
+.logo_on_main{
+	display: flex;
+	align-content: center;
+}
+#main_logo_icon{
+	margin: auto;
 }
 .cards{
 	margin: 0 auto;
