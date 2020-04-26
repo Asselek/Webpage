@@ -6,9 +6,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Spartan:wght@200&display=swap" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="script.js" type="text/javascript" ></script>
 </head>
 
 <body>
+
 
 	<!-- main slider images or not slider just image -->
 
@@ -23,17 +26,12 @@
 			<a class = "hvr-shutter-out-vertical" id = "a_link" href = "/LoginAndSignUpPage/login.php">LOG IN</a>
 			<a class = "hvr-shutter-out-vertical" id = "a_link" href = "#body_block">ANIMALS</a>
 			<a class = "hvr-shutter-out-vertical" id = "a_link" href = "#our_mission_teleport">OUR MISSION</a>
-		<!-- 	<div id = "m_button"> <button id = "main_button" type = "button"> <a id = "a_link" href = "/LoginAndSignUpPage/SignUp.php">SIGN UP</a> </button> </div>
-			<div id = "m_button"> <button id = "main_button" type = "button"> <a id = "a_link" href = "/LoginAndSignUpPage/login.php">LOG IN</a> </button> </div>
-			<div id = "m_button"> <button id = "main_button" type = "button"> <a id = "a_link" href = "#body_block">ANIMALS</a> </button> </div>
-			<div id = "m_button"> <button id = "main_button" type = "button"> <a id = "a_link" href = "#our_mission_teleport">OUR MISSION</a> </button> </div> -->
 		</div>
 
 		<div class = "buttons_after_logo_buttons">
 			<a class = "hvr-shutter-out-vertical" href = "/DonateAndSafe/donationPage.html" id = "a_link" >DONATE & SAFE </a>
 			<a class = "hvr-shutter-out-vertical" href="/EventPage/events.html" id = "a_link">EVENTS</a>
-			<!-- <div id = "m_button"> <button id = "main_button" type = "button"> <a href = "/DonateAndSafe/donationPage.html" id = "a_link" >DONATE & SAFE </a> </button> </div>
-			<div id = "m_button"> <button id = "main_button" type = "button"> <a href="/EventPage/events.html" id = "a_link"> EVENTS</a> </button> </div> -->
+
 		</div>
 		
 
@@ -48,15 +46,34 @@
 
 	<!--      User/Guest/Admin        -->
 	<div class = "UGA_place">
-		<div class = "UGA_block" id = "user_image"> <img class= "UGA_logo user" src="https://cdn3.iconfinder.com/data/icons/pirate-outline-4/340/whale_ocean_sea_nature_animal_underwater_aquatic-128.png"><div id = "centered_text">visitor name</div> </div>
 
+		<?php 
+			if(isset($_GET['name'])){
 
-		<div class = "UGA_block" id = "admin_image"><img class = "UGA_logo admin" src="https://cdn2.iconfinder.com/data/icons/veterinary-line-fluffy-pet/512/First_aid_pet-128.png"><div id = "centered_text">YOU ARE ADMIN<a class = "hvr-shutter-out-vertical admin_page_css" href="/AdminPage/adminPage.html" >GO TO ADMIN PAGE</a></div> </div>
+				if(strpos($_GET['name'], "Admin")){
+					echo '<div class = "UGA_block"><img class = "UGA_logo admin" src="https://cdn2.iconfinder.com/data/icons/veterinary-line-fluffy-pet/512/First_aid_pet-128.png"><div id = "centered_text">YOU ARE ADMIN<a class = "hvr-shutter-out-vertical admin_page_css" href="/AdminPage/adminPage.php" >GO TO ADMIN PAGE</a></div><a href="/index.php">exit</a></div>';
+				}
+				
+				else{
+					echo '<div class = "UGA_block">';
 
+					echo '<img class= "UGA_logo user" src="https://cdn3.iconfinder.com/data/icons/pirate-outline-4/340/whale_ocean_sea_nature_animal_underwater_aquatic-128.png">';
 
-		<div class = "UGA_block" id = "guest_image"><img class = "UGA_logo guest" src="https://cdn4.iconfinder.com/data/icons/zoo-line-welcome-to-zootopia/512/parrot-128.png"><div id = "centered_text">YOU ARE GUEST</div></div>
+					echo '<div id = "centered_text">Welcome ' . $_GET['name'] . '</div>';
+
+					echo '<a href="/index.php">exit</a></div>';
+				}
+
+			}
+			else{
+				echo '<div class = "UGA_block" id = "guest_image"><img class = "UGA_logo guest" src="https://cdn4.iconfinder.com/data/icons/zoo-line-welcome-to-zootopia/512/parrot-128.png"><div id = "centered_text">YOU ARE GUEST</div></div>'; 
+			}
+
+		?>
 
 	</div>
+
+
 
 
 	<div class = "space_between_main_block_and_body">
@@ -67,7 +84,7 @@
 
 	</div>
 
-
+	<button onclick='document.body.scrollTo({top: 0, behavior: "smooth"});' id="myBtn"></button>
 	<div id = "body_block" class = "body_block">
 		
 		<!-- The blocks which will create the group of animal main block-->
@@ -147,7 +164,7 @@ continent except Australia and Antarctica. </div>
 			
 			<div class = "fill_fields">
 
-				<form action="#" method="post">
+				<form method="post">
 				
 				Select Animal
 				<select name="Animal_name">
@@ -174,6 +191,13 @@ continent except Australia and Antarctica. </div>
 				<input id = "animal_find_input" type="submit" name="animal_find" value = "Find animal">
 
 				<input id = "animal_find_input" type="submit" name="give_all" value = "Select all">
+				</form>
+
+				<?php 
+					if(!isset($_GET['name'])){
+						echo "<a href = 'http://localhost/LoginAndSignUpPage/login.php' class = 'go_login'>To select or find please log in or sign up</a>";
+					}
+				?>
 			</div>
 
 			<div class = "animal_output">
@@ -226,3 +250,4 @@ continent except Australia and Antarctica. </div>
 </body>
 
 </html>
+
