@@ -51,13 +51,23 @@
 			if(isset($_GET['name'])){
 
 				if(strpos($_GET['name'], "Admin")){
-					echo '<div class = "UGA_block"><img class = "UGA_logo admin" src="https://cdn2.iconfinder.com/data/icons/veterinary-line-fluffy-pet/512/First_aid_pet-128.png"><div id = "centered_text">YOU ARE ADMIN<a class = "hvr-shutter-out-vertical admin_page_css" href="/AdminPage/adminPage.php" >GO TO ADMIN PAGE</a></div><a href="/index.php">exit</a></div>';
+					echo '<div class = "UGA_block"><img class = "UGA_logo admin" src="https://cdn2.iconfinder.com/data/icons/veterinary-line-fluffy-pet/512/First_aid_pet-128.png"><div id = "centered_text">YOU ARE ADMIN<a class = "hvr-shutter-out-vertical admin_page_css" href="/AdminPage/adminPage.php" target="_blank" >GO TO ADMIN PAGE</a></div><a href="/index.php">exit</a></div>';
 				}
 				
-				else{
+				else if(strpos($_GET['name'], "User")){
 					echo '<div class = "UGA_block">';
 
 					echo '<img class= "UGA_logo user" src="https://cdn3.iconfinder.com/data/icons/pirate-outline-4/340/whale_ocean_sea_nature_animal_underwater_aquatic-128.png">';
+
+					echo '<div id = "centered_text">Welcome ' . $_GET['name'] . '</div>';
+
+					echo '<a href="/index.php">exit</a></div>';
+				}
+
+				else{
+					echo '<div class = "UGA_block">';
+
+					echo '<img class= "UGA_logo user" src="https://cdn0.iconfinder.com/data/icons/business-and-education-1/512/29_idea_share_transfer_staff-128.png">';
 
 					echo '<div id = "centered_text">Welcome ' . $_GET['name'] . '</div>';
 
@@ -166,21 +176,51 @@ continent except Australia and Antarctica. </div>
 
 				<form method="post">
 				
-				Select Animal
+				<div class = "left_content">Select Animal</div>
 				<select name="Animal_name">
-					<option value = "Lion">Lion</option>
+					<?php 
+						$conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
+						$stid = oci_parse($conn, 'SELECT ANIMAL_NAME FROM ANIMALS');
+						$exe = oci_execute($stid);
+						if(!$exe){
+							someError();
+						}
+
+						while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
+							echo "<option value " . $row['ANIMAL_NAME'] . ">" . $row['ANIMAL_NAME'] . "</option>";
+						}
+
+						oci_close($conn);
+
+					?>
 				</select>
 
-				Select Zoo
+				<div class = "left_content">Select Zoo</div>
 				<select name="Zoo_name">
-					<option value = "first">someZoo</option>
+					<?php 
+						$conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
+						$stid = oci_parse($conn, 'SELECT ADDRESS FROM ZOO');
+						$exe = oci_execute($stid);
+						if(!$exe){
+							someError();
+						}
+
+						while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
+							echo "<option value " . $row['ADDRESS'] . ">" . $row['ADDRESS'] . "</option>";
+						}
+
+						oci_close($conn);
+
+					?>
+
+
 				</select>
 
-				Order By
+				<div class = "left_content">Order By</div>
 				<select name="OrderBy">
-					<option value = "id">id</option>
-					<option value = "age">age</option>
-					<option value = "name">name</option>
+					<option value = "ANIMAL_ID">ID</option>
+					<option value = "AGE">Age</option>
+					<option value = "ANIMAL_NAME">Name</option>
 				</select>
 
 				<select name="AscDesc">
@@ -197,11 +237,80 @@ continent except Australia and Antarctica. </div>
 					if(!isset($_GET['name'])){
 						echo "<a href = 'http://localhost/LoginAndSignUpPage/login.php' class = 'go_login'>To select or find please log in or sign up</a>";
 					}
+					else if(strpos(isset($_GET['name']), "User")){
+
+						if($_SERVER["REQUEST_METHOD"] == 'POST'){
+
+							$conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
+
+							if(isset($_POST['give_all'])){
+								$stid = oci_parse($conn, "SELECT * FROM ANIMALS");
+								$exe = oci_execute($stid);
+								if(!$exe){
+									someError();
+								}
+								outputTheAnimals($stid);
+							}
+
+							if(isset($_POST['animal_find'])){
+								$animal_name = $_POST['Animal_name'];
+								$zoo_name = $_POST['Zoo_name'];
+								$order = $_POST['OrderBy'];
+								$ascOrDesc = $_POST['AscDesc'];
+
+								$query = "SELECT * FROM ANIMALS A JOIN ZOO Z ON ( " . $zoo_name . " = Z.ADDRESS) ORDER BY A." . $order . " " . ($ascOrDesc == "Ascending" ? "ASC" : "DESC");
+
+								$stid = oci_parse($conn, $query);
+								$exe = oci_execute($stid);
+								if(!$exe){
+									someError();
+								}
+								outputTheAnimals($stid);
+							}
+
+						}
+					}
+				
+
+					function someError(){
+						echo "<div class = 'animal_output'>You've done something wrong!<div>";
+						die(2);
+					}
+
+					function outputTheAnimals($stid){
+						echo "<div class = 'animal_output'>";
+
+							echo "<div class = 'animal_block'>";
+			
+							while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
+
+				    			//foreach ($row as $item) {
+				    				echo "<div class = 'image_in_animal_block' style='background-image = url('" . $row['IMAGE'] . "');  background-position: center; background-repeat: no-repeat; background-size:cover; height: 100vh; width: 100vw; border: 1px solid green'></div>";
+				    				echo "<div class = 'animal_right_text'>";
+
+				    					echo "<div class = 'animal_name'>" . $row['ANIMAL_NAME'] . "</div>";
+				    					echo "<div class = 'animal_age'>" . $row['AGE'] . "</div>";
+				    					echo "<div class = 'animal_gender'>" . $row['GENDER'] . "</div>";
+				    					echo "<div class = 'animal_genus'>" . $row['GENUS'] . "</div>";
+
+				    				echo "</div>";
+				    			//}
+							}
+
+
+							echo "</div>";
+
+						echo "</div>";
+					}
+
+
+
 				?>
+
+
 			</div>
 
 			<div class = "animal_output">
-				<!-- it works :) -->
 
 
 			</div>
