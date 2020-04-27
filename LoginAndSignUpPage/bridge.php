@@ -24,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		}
 
 		if($adminOrUser == 'Admin'){
-			$stid = oci_parse($conn, "SELECT FIRST_NAME FROM STAFF_TABLE WHERE STAFF_EMAIL LIKE '$email' AND STAFF_PASSWORD LIKE '$pass'");
+			$stid = oci_parse($conn, "SELECT FIRST_NAME FROM STAFF_TABLE WHERE STAFF_EMAIL LIKE '$email' AND STAFF_PASSWORD LIKE '$pass' AND UPPER(ROLE) LIKE 'ADMIN'");
 
 			oci_execute($stid);
 				
@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 			while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
 	    		foreach ($row as $item) {
-	    			header('Location: /index.php?Aname=' . $item);
+	    			header('Location: /index.php?name=' . $item . "+Admin");
 	    			die(4);
 	    		}
 	    		break;
@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 		}
 
-		else{
+		else if ($adminOrUser == 'User'){
 			$stid = oci_parse($conn, "SELECT FIRST_NAME FROM VISITOR WHERE EMAIL LIKE '$email' AND VISITOR_PASSWORD LIKE '$pass'");
 
 			oci_execute($stid);
@@ -51,11 +51,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 			while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
 	    		foreach ($row as $item) {
-	    			header('Location: /index.php?Uname=' . $item);
+	    			header('Location: /index.php?name=' . $item . "+User");
 	    			die(4);
 	    		}
 	    		break;
 			}
+		}
+
+		else{
+			$stid = oci_parse($conn, "SELECT FIRST_NAME FROM STAFF_TABLE WHERE STAFF_EMAIL LIKE '$email' AND STAFF_PASSWORD LIKE '$pass' AND UPPER(ROLE) LIKE 'STAFF'");
+
+			oci_execute($stid);
+				
+			echo "Incorrect password or email try again";
+			echo "<br/><a href = 'http://localhost/LoginAndSignUpPage/login.php' >back</a>";
+
+			while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+	    		foreach ($row as $item) {
+	    			header('Location: /index.php?name=' . $item . "+Staff");
+	    			die(4);
+	    		}
+	    		break;
+			}
+
 		}
 
 
