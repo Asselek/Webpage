@@ -15,10 +15,10 @@
 
 			<input type="email" name="email" placeholder="Enter Your Email" class="writer"><br>
 			<input type="password" name="pass" placeholder="*******" class="writer"><br>
+			<input type="radio" name="isUserOrAdmin" value = "Admin">Admin
+			<input type="radio" name="isUserOrAdmin" value = "User">User</div><br>
 			<input type="submit" name="login" value="Login" class="btn">
 			<input type="reset" name="reset" value="Reset" class="btn">
-			<input type="radio" name="isAdmin">Admin
-			<input type="radio" name="isUser">User
 		</form>
 	</div>
 </div>
