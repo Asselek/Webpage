@@ -12,10 +12,13 @@
 	<h2>Login Now / <a href="SignUp.php">Register Now</a></h2>
 	<div class="toPlace">
 		<form action = "bridge.php" method="POST">
+
 			<input type="email" name="email" placeholder="Enter Your Email" class="writer"><br>
 			<input type="password" name="pass" placeholder="*******" class="writer"><br>
 			<input type="submit" name="login" value="Login" class="btn">
 			<input type="reset" name="reset" value="Reset" class="btn">
+			<input type="radio" name="isAdmin">Admin
+			<input type="radio" name="isUser">User
 		</form>
 	</div>
 </div>
