@@ -1,253 +1,394 @@
-<html>
-<head>
-	<title>Zoo In Your Woo</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Spartan:wght@200&display=swap" rel="stylesheet">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="script.js" type="text/javascript" ></script>
-</head>
-
-<body>
-
-
-	<!-- main slider images or not slider just image -->
-
-	<div class = "big_main_window"> 
-
-		<!-- Logo -->
-		<div class = "logo_on_main"><img id = "main_logo_icon" src = "https://cdn2.iconfinder.com/data/icons/cutecritters/t9tuqui_trans.png"> </div>
-		
-		<!-- Buttons -->
-		<div class = "buttons_after_logo"> 
-			<a class = "hvr-shutter-out-vertical" id = "a_link" href = "/LoginAndSignUpPage/SignUp.php">SIGN UP</a>
-			<a class = "hvr-shutter-out-vertical" id = "a_link" href = "/LoginAndSignUpPage/login.php">LOG IN</a>
-			<a class = "hvr-shutter-out-vertical" id = "a_link" href = "#body_block">ANIMALS</a>
-			<a class = "hvr-shutter-out-vertical" id = "a_link" href = "#our_mission_teleport">OUR MISSION</a>
-		</div>
-
-		<div class = "buttons_after_logo_buttons">
-			<a class = "hvr-shutter-out-vertical" href = "/DonateAndSafe/donationPage.html" id = "a_link" >DONATE & SAFE </a>
-			<a class = "hvr-shutter-out-vertical" href="/EventPage/events.html" id = "a_link">EVENTS</a>
-
-		</div>
-		
-
-		<div class = "text_in_bottom_main"> 
-			<div id = "bottom_text_main">Look into wild eyes</div>
-			<div id = "main_vertical_line"></div>
-			<div id = "bottom_text_main_2">Closed</div>
-		 </div>
-
-	</div>
-
-
-	<!--      User/Guest/Admin        -->
-	<div class = "UGA_place">
-
-		<?php 
-			if(isset($_GET['name'])){
-
-				if(strpos($_GET['name'], "Admin")){
-					echo '<div class = "UGA_block"><img class = "UGA_logo admin" src="https://cdn2.iconfinder.com/data/icons/veterinary-line-fluffy-pet/512/First_aid_pet-128.png"><div id = "centered_text">YOU ARE ADMIN<a class = "hvr-shutter-out-vertical admin_page_css" href="/AdminPage/adminPage.php" >GO TO ADMIN PAGE</a></div><a href="/index.php">exit</a></div>';
-				}
-				
-				else{
-					echo '<div class = "UGA_block">';
-
-					echo '<img class= "UGA_logo user" src="https://cdn3.iconfinder.com/data/icons/pirate-outline-4/340/whale_ocean_sea_nature_animal_underwater_aquatic-128.png">';
-
-					echo '<div id = "centered_text">Welcome ' . $_GET['name'] . '</div>';
-
-					echo '<a href="/index.php">exit</a></div>';
-				}
-
-			}
-			else{
-				echo '<div class = "UGA_block" id = "guest_image"><img class = "UGA_logo guest" src="https://cdn4.iconfinder.com/data/icons/zoo-line-welcome-to-zootopia/512/parrot-128.png"><div id = "centered_text">YOU ARE GUEST</div></div>'; 
-			}
-
-		?>
-
-	</div>
-
-
-
-
-	<div class = "space_between_main_block_and_body">
-
-		<div class = "logo_on_main" style="padding-top: 25px;"> <img id = "main_logo_icon" src="https://cdn3.iconfinder.com/data/icons/animal-flat-colors/64/Lion-128.png"></div>
-
-		<div class = "little_words">LET'S MEET OUR FRIENDS <hr id = "little_words_line"></div>
-
-	</div>
-
-	<button onclick='document.body.scrollTo({top: 0, behavior: "smooth"});' id="myBtn"></button>
-	<div id = "body_block" class = "body_block">
-		
-		<!-- The blocks which will create the group of animal main block-->
-		<div class = "big_block cats">
-
-			<!-- background image of certain group -->
-
-			<div id = "animal_group_text"> WILD CATS </div>
-			<div class = "animal_group_description_text"> Lions, tigers, cheetahs, jaguars, pumas, and three kinds of
-leopards—the big cats are magnifi cent predators that roam every
-continent except Australia and Antarctica. </div>
-
-		</div>
-
-		<div class = "big_block bears">
-
-			<!-- background image of certain group -->
-
-			<div id = "animal_group_text"> BEARS </div>
-			<div class = "animal_group_description_text">Bears have large bodies, stocky legs, a long snout, shaggy hair, paws with claws, and a short tail. </div>
-
-		</div>
-
-		<div class = "big_block penguins">
-
-			<!-- background image of certain group -->
-
-			<div id = "animal_group_text"> PENGUINS </div>
-			<div class = "animal_group_description_text"> Penguins are very funny animals. They are birds that cannot fly, but love to swim!</div>
-		</div>
-
-	</div>
-
-	<div class="body_block">
-			<div class = "big_block birds">
-
-			<!-- background image of certain group -->
-
-			<div id = "animal_group_text"> BIRDS </div>
-			<div class = "animal_group_description_text"> A bird cal fly higher, further, and faster than any other animal </div>
-		</div>
-
-
-		<div class = "big_block monkeys">
-
-			<!-- background image of certain group -->
-
-			<div id = "animal_group_text"> MONKEYS </div>
-			<div class = "animal_group_description_text"> Monkeys are very vocal animals and that is their name way of communicating with each other.  </div>
-		</div>
-
-
-		<div class = "big_block snakes">
-
-			<!-- background image of certain group -->
-
-			<div id = "animal_group_text"> SNAKES </div>
-			<div class = "animal_group_description_text"> Snakes are masters of disguise, skilled hunters, and champion eaters.  </div>
-		</div>
-	</div>
-
-
-	<div class = "space_between_main_block_and_body">
-
-		<div class = "logo_on_main" style="padding-top: 25px;"> <img id = "main_logo_icon" src="https://cdn3.iconfinder.com/data/icons/animal-flat-colors/64/koala-128.png"></div>
-
-		<div class = "little_words">WANNA SEE MORE? <hr id = "little_words_line"></div>
-
-	</div>
-
-
-	<!-- the block only for user who wants to see more about zoo animals-->
-	<div class = "user_interface_block">
-		
-
-		<div class = "interaction_board">
-			
-			<div class = "fill_fields">
-
-				<form method="post">
-				
-				Select Animal
-				<select name="Animal_name">
-					<option value = "Lion">Lion</option>
-				</select>
-
-				Select Zoo
-				<select name="Zoo_name">
-					<option value = "first">someZoo</option>
-				</select>
-
-				Order By
-				<select name="OrderBy">
-					<option value = "id">id</option>
-					<option value = "age">age</option>
-					<option value = "name">name</option>
-				</select>
-
-				<select name="AscDesc">
-					<option value = "Ascending">Ascending</option>
-					<option value = "Descending">Descending</option>
-				</select>
-
-				<input id = "animal_find_input" type="submit" name="animal_find" value = "Find animal">
-
-				<input id = "animal_find_input" type="submit" name="give_all" value = "Select all">
-				</form>
-
-				<?php 
-					if(!isset($_GET['name'])){
-						echo "<a href = 'http://localhost/LoginAndSignUpPage/login.php' class = 'go_login'>To select or find please log in or sign up</a>";
-					}
-				?>
-			</div>
-
-			<div class = "animal_output">
-				<!-- it works :) -->
-
-
-			</div>
-
-		</div>
-
-
-
-	</div>
-
-	<div class = "space_between_main_block_and_body">
-
-		<div class = "logo_on_main" style="padding-top: 25px;"> <img id = "main_logo_icon" src="https://cdn3.iconfinder.com/data/icons/animal-flat-colors/64/elepant-128.png"></div>
-
-		<div id = "our_mission_teleport" class = "little_words">OUR MISSION <hr id = "little_words_line"></div>
-
-		<div class = "our_mission_text">Our mission: save the rare sort of animals from poachers, give love and take care our little friends.</div>
-
-	</div>
-
-	<div class = "sticky_end">
-		<div class = "SMM">
-			<div class = "social_media"><img src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/facebook_circle-64.png"></div>
-			<div class = "social_media"><img class = "social_media" src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/linkedin-64.png"></div>
-			<div class = "social_media">
-			<img class = "social_media" src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/instagram-64.png"></div>
-			<div class = "social_media"><img class = "social_media" src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-64.png"></div>
-			<div class = "social_media"><img class = "social_media" src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/youtube_circle-64.png"></div>
-			<div class = "social_media"><img class = "social_media" src="https://cdn0.iconfinder.com/data/icons/social-media-2092/100/social-56-64.png"></div>
-			
-			
-		</div>
-
-		<div id = "bottom_vertical_line"></div>
-		<div class = "About">About
-				<div class = "About_text">
-			We are group of people who are making animals life better and safe their life. We work 9:00AM till 6:00PM. Tickets only available at enter to each zoo.
-
-			<div>©Desgined by Toleubay Alikhan</div>
-		</div></div>
-
-	</div>
-
-
-
-</body>
-
-</html>
-
+html, body{
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+.big_main_window{
+	background-image: url('https://i.ytimg.com/vi/5FImmkU6Okk/maxresdefault.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	max-height: 1000px;
+	height: 100vh;
+	width: 100vw;
+
+}
+
+#myBtn:hover {
+  background-color: #F1C40F;
+}
+
+#myBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: orange;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.logo_on_main{
+	display: flex;
+	align-content: center;
+}
+#main_logo_icon{
+	margin: auto;
+}
+
+.buttons_after_logo, .buttons_after_logo_buttons{
+	display: flex;
+	justify-content: space-around;
+	margin: 5px;
+
+}
+
+.hvr-shutter-out-vertical {
+	padding: 25px;
+	font-size: 36px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  background: none;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-shutter-out-vertical:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #F1C40F;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-shutter-out-vertical:hover, .hvr-shutter-out-vertical:focus, .hvr-shutter-out-vertical:active {
+  color: white;
+}
+.hvr-shutter-out-vertical:hover:before, .hvr-shutter-out-vertical:focus:before, .hvr-shutter-out-vertical:active:before {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}
+
+
+
+
+.text_in_bottom_main{
+	display: flex;
+	max-height: 1080px;
+	height: 50%;
+}
+
+#bottom_text_main{
+	color: white;
+	font-size: 72px;
+	font-family: 'Poiret One', cursive;
+	padding-bottom: 25px;
+	margin: auto;
+	margin-bottom: 0px;
+}
+#bottom_text_main_2{
+	color: white;
+	font-size: 72px;
+	font-family: 'Poiret One', cursive;
+	padding-bottom: 25px;
+	margin-left: 125px;
+	margin: auto;
+	margin-bottom: 0px;
+
+}
+
+#main_vertical_line{
+	border-left: 2px solid #FCF3CF;
+	height: 72px;
+	margin-left: 125px;
+	margin: auto;
+	margin-bottom: 0px;
+}
+
+.little_words{
+	padding-top: 45px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 36px;
+	font-family: 'Poiret One', cursive;
+}
+
+#little_words_line{
+	width: 150px;
+	border-style: inset;
+	border-color: green;
+}
+
+.body_block{
+
+	//border: 1px solid black;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding-top: 25px;
+
+}
+
+.big_block{
+	width: 250px;
+	height: 350px;
+	background-position: center;
+	background-size: cover;
+	transition: width 0.5s;
+}
+
+.animal_group_description_text{
+	visibility: hidden;
+}
+
+.big_block:hover .animal_group_description_text{
+	visibility: visible;
+	position: relative;
+	top: 50%;
+	text-align: center;
+	color: white;
+	font-size: 18px;
+	font-family: 'Poiret One', cursive;	
+}
+
+.big_block:hover #animal_group_text{
+	visibility: hidden;
+}
+.big_block:hover {
+	/*box-shadow: inset 0px 0px 10px 5px;*/
+	width: 450px;
+}
+
+.cats{
+	background-image: url('https://cdn2.wanderlust.co.uk/media/1013/big-cat-tales-new-main.jpg?anchor=center&mode=crop&width=1200&height=0&rnd=131965296340000000');
+}
+
+.bears{
+	background-image: url('https://www.plantbasednews.org/.image/t_share/MTcwNzg2MDU2OTMxNjQ4Nzc0/polarbears.jpg');
+}
+
+.penguins{
+	background-image: url('https://www.calgaryzoo.com/sites/default/files/styles/hero_large/public/2018-05/Penguins-Hero-Image_0.jpg');
+}
+
+.birds{
+	background-image: url('https://inhabitat.com/wp-content/blogs.dir/1/files/2017/09/escaped-pet-birds-are-teaching-wild-birds-how-to-speak-English-2.jpg');
+}
+
+.monkeys{
+	background-image: url('https://www.easytourchina.com/images/Photo/zhangjiajie-national-forest-park/p208_d20160427170938.jpg');
+}
+
+.snakes{
+	background-image: url('https://thumbs-prod.si-cdn.com/6Y1_9BEk-ORuqjnfnu52qxixRr4=/fit-in/1072x0/https://contest-public-media.si-cdn.com/49ac25c4-0f57-4ddc-9da1-e7c213d894e1.jpg');
+}
+
+#animal_group_text{
+	position: relative;
+	top: 85%;
+	text-align: center;
+	color: white;
+	font-size: 36px;
+	font-family: 'Poiret One', cursive;
+}
+
+.user_interface_block{
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	//border: 1px solid blue;
+}
+
+.interaction_board{
+	width: 80%;
+	height: 500px;
+	//border: 1px solid red;
+	display: flex;
+	//justify-content: space-around;
+	align-content: center;
+	
+}
+
+.fill_fields{
+	width: 180px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.our_mission_text{
+	text-align: center;
+	width:100%;
+	font-size: 48px;
+	font-family: 'Poiret One', cursive;
+}
+
+input{
+	padding: 5px;
+	font-size: 14px;
+	margin-top: 5px;
+	background-color: green;
+	color: white;
+	text-align: center;
+}
+
+input:focus, textarea:focus, select:focus, button:focus{
+    outline: none;
+}
+
+::placeholder{
+	color: white;
+}
+
+#animal_find_input{
+	//border: 1px solid green;
+	cursor: pointer;
+	width: 171px;
+}
+.animal_output{
+	overflow: scroll;
+	border-left: 1px solid green;
+	margin-left: 10px;
+	background-image: url('https://cdn0.iconfinder.com/data/icons/isometric-farm-animals/160/dog-03-128.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+
+
+.sticky_end{
+	margin-top: 100px;
+	width: 100%;
+	//border: 1px solid blue;
+	display: flex;
+	justify-content: space-around;
+	//background-color: green;
+	background-image: url('https://images.wallpaperscraft.com/image/elephant_savanna_sunset_143506_1920x1080.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom;
+	width: 100vw;
+	height: 225px;
+	padding-top: 35px;
+
+}	
+
+a{
+	color: #F4D03F;
+    text-decoration: none;
+   font-family: 'Spartan', sans-serif;
+}
+/*#a_link{
+	text-decoration: none;
+	color:green;	
+}
+
+#a_link:hover{
+	background-color: green;
+	color: white;
+	font-size: 25px;
+	margin-bottom: -7px;
+}*/
+
+
+.SMM{
+	padding: 5%;
+	display: flex;	
+
+}
+
+#bottom_vertical_line{
+	border-left: 1px solid white;
+	height: 200px;
+}
+
+.About, .About_text{
+	color: white;
+	padding-left: 5px;
+	padding-top: 4%;
+
+}
+
+.About{
+	text-align: center;
+}
+
+
+select{
+	border: 1px solid green;
+	margin: 2px;
+}
+
+
+
+.admin_page_css{
+	font-size: 14px;
+	height: 10%;
+	margin: auto;
+	padding: auto;
+
+}
+
+.UGA_place{
+	display: flex;
+	/*border: 1px solid blue;*/
+	justify-content: space-around;
+}
+
+.UGA_block{
+	display: flex;
+	/*background-color: #FEF9E7;*/
+	padding-right: 15px;
+	border-radius: 20px;
+	margin: 10px;
+	border: 1px solid black;
+
+}
+
+#centered_text{
+	margin: auto;
+	font-size: 24px;
+	color: black;
+	font-family: 'Spartan', sans-serif;
+}
+
+.animal_block{
+	width: 100%;
+	display: flex;	
+}
+
+
+.animal_right_text{
+	width: 100%;
+	display: inline-flex;
+}
+
+.go_login{
+	margin-right: 30px;
+}
