@@ -64,3 +64,8 @@ footer p{
     transform: translate(-50%, -60%);
     z-index: 10;
 }
+
+.rad{
+  display: flex;
+  justify-content: center;
+}
