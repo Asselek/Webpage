@@ -1,7 +1,9 @@
 html, body{
-	//width: 100%;
+	/*width: 100%;*/
 	height: 100%;
 	margin: auto;
+	background-color: darkgrey;
+
 }
 
 .admin_commands{
@@ -10,39 +12,6 @@ html, body{
 	/*justify-content: space-around;*/
 	border-bottom: 1px solid black;
 }
-
-.b_com{
-	padding: 10px;
-	margin: 10px;
-	background-color: green;
-	color: white;
-}
-
-.visitor_b{
-	background-color: mediumorchid;
-}
-
-.animal_b{
-	background-color: orange;
-}
-
-.order_b{
-	background-color: #CCCC00;
-}
-
-.event_b{
-	background-color: lightcoral;
-}
-
-.donate_b{
-	background-color: darkcyan;
-}
-
-.staff_b{
-	background-color: grey;
-}
-
-
 #empty_space{
 	border-left: 1px solid green;
 }
@@ -51,46 +20,109 @@ html, body{
 	background-color: lightgrey;
 	width: 100%;
 	height: 30%;
+	overflow: auto;
 	border-radius: 5px;
+
 }
 
 .output_area{
 	background-color: darkgrey;
 	width: 100%;
-	height: 59.5%;
+	height: 65.6%;
 	overflow: auto;
 	border-radius: 5px;
+
+	display: inline-flex;
+	justify-content: space-around;
 }
+
 
 #select_button{
 	text-align: center;
 	visibility: visible;
 }
 
-#no_out{
+#out{
 	text-align: center;
-	visibility: visible;
 }
 
-.fill_block{
-	width: 100%;
-	//border: 1px solid black;
-	height: 90%;
+.status_output_text{
+	text-align: center;
 }
+
+
 .action_area{
 	width: 100%;
-	//height: 90%;
-	display: inline-block;
+	display: inline-flex;
+	justify-content: space-around;
 }
 
-.submit_bu{
-
-}
 
 a{
 	padding: 10px;
 	text-decoration: none;
+	color: white;
+	
+}
+
+.home_link{
+	display: flex;
+	justify-content: space-around;
+}
+
+.command_block{
+	padding: 15px;
+}
+
+.text_before_input{
+	font-size: 18px;
 }
 
 
-/* working with visibility of inputs */
+.text_before_query{
+	font-size: 22px;
+}
+
+.inputCSS{
+  padding: 12px 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #555;
+  outline: none;
+  margin: 5px;
+}
+
+.inputCSS:focus{
+	background-color: lightblue;
+}
+
+
+
+.custom_commands{
+	  width: 100%;
+	  height: 150px;
+	  padding: 12px 20px;
+	  box-sizing: border-box;
+	  border: 2px solid #ccc;
+	  border-radius: 4px;
+	  background-color: #f8f8f8;
+	  font-size: 16px;
+	  resize: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: lightgrey}
+
+th {
+  background-color: grey;
+  color: white;
+}
