@@ -19,7 +19,7 @@ html, body{
 .input_area{
 	background-color: lightgrey;
 	width: 100%;
-	height: 30%;
+	height: 50%;
 	overflow: auto;
 	border-radius: 5px;
 
@@ -28,7 +28,7 @@ html, body{
 .output_area{
 	background-color: darkgrey;
 	width: 100%;
-	height: 65.6%;
+	height: 40%;
 	overflow: auto;
 	border-radius: 5px;
 
@@ -125,4 +125,8 @@ tr:nth-child(even){background-color: lightgrey}
 th {
   background-color: grey;
   color: white;
+}
+
+.column_name_row{
+	background-color: orange;
 }
