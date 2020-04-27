@@ -59,19 +59,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	    print htmlentities($e['sqltext']);
 	    printf("\n%".($e['offset']+1)."s", "^");
     	print  "\n</pre>\n";
+    	die(1);
 	}
 	
 
 	oci_close($conn);
 
+	header("Location: login.php");
+
 }
 
-// $conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
-// if (!$conn) {
-//     $e = oci_error();
-//     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-// }
-
-// $stid = oci_parse($conn, 'SELECT * FROM employees');
-// oci_execute($stid);
 ?>
