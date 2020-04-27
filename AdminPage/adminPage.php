@@ -54,12 +54,12 @@
 					<div class = "text_before_input">
 						Insert new staff member
 					</div>
-					<input class = "inputCSS" type="text" name="staff_first_name" placeholder="First Name">
-					<input class = "inputCSS" type="text" name="staff_last_name" placeholder="Last Name">
-					<input class = "inputCSS" type="email" name="staff_email" placeholder="Email">
-					<input class = "inputCSS" type="password" name="staff_password" placeholder="Password">
-					<input class = "inputCSS" type="text" name="staff_role" placeholder="Role">
-					<input class = "inputCSS" type="number" name="staff_to_zoo" placeholder="Zoo ID">
+					<input class = "inputCSS" type="text" name="insert_staff_first_name" placeholder="First Name">
+					<input class = "inputCSS" type="text" name="insert_staff_last_name" placeholder="Last Name">
+					<input class = "inputCSS" type="email" name="insert_staff_email" placeholder="Email">
+					<input class = "inputCSS" type="password" name="insert_staff_password" placeholder="Password">
+					<input class = "inputCSS" type="text" name="insert_staff_role" placeholder="Role">
+					<input class = "inputCSS" type="number" name="insert_staff_to_zoo" placeholder="Zoo ID">
 
 					<input  class = "inputCSS" type="submit" name="insert_staff_submit" value = "INSERT">
 				</div>
@@ -108,7 +108,7 @@
 
 
 				<div class = "text_before_query">ADVANCED COMMANDS</div>
-				<input class = "custom_commands" type="textarea" name="admin_query">
+				<textarea class = "custom_commands"  name="admin_query"></textarea>
 				<input class = "inputCSS" type="submit" name="admin_query_submit" value="SUBMIT">
 
 
@@ -166,20 +166,21 @@
 
 		//STAFF
 
-		if(isset($_POST['insert_staff'])){
-			$staff_first_name = $_POST['staff_first_name'];
-			$staff_last_name = $_POST['staff_last_name'];
-			$staff_email = $_POST['staff_email'];
-			$staff_password = $_POST['staff_password'];
-			$satff_role = $_POST['staff_role'];
-			$zoo_id = $_POST['zoo_id'];
+		if(isset($_POST['insert_staff_submit'])){
 
-			$stid = oci_parse($conn, "INSERT INTO STAFF_TABLE (STAFF_ID, ZOOID, FIRST_NAME, LAST_NAME, STAFF_EMAIL, ROLE, STAFF_PASSWORD) VALUES ('STAFF_ID_SEQ.nextval', '$zoo_id', '$staff_first_name', '$staff_last_name', '$staff_email', '$staff_role', '$staff_password')");
+			$staff_first_name = $_POST['insert_staff_first_name'];
+			$staff_last_name = $_POST['insert_staff_last_name'];
+			$staff_email = $_POST['insert_staff_email'];
+			$staff_password = $_POST['insert_staff_password'];
+			$staff_role = $_POST['insert_staff_role'];
+			$zoo_id = $_POST['insert_staff_to_zoo'];
+
+
+			$stid = oci_parse($conn, "INSERT INTO STAFF_TABLE (STAFF_ID, ZOOID, FIRST_NAME, LAST_NAME, STAFF_EMAIL, ROLE, STAFF_PASSWORD) VALUES (16, '$zoo_id', '$staff_first_name', '$staff_last_name', '$staff_email', '$staff_role', '$staff_password')");
 
 			$exe = oci_execute($stid);
 			executionError($exe);
 
-			//TOCHECK;
 		}
 
 		if(isset($_POST['delete_staff_submit'])){
@@ -199,8 +200,8 @@
 			$staff_last_name = $_POST['staff_last_name'];
 			$staff_email = $_POST['staff_email'];
 			$staff_password = $_POST['staff_password'];
-			$satff_role = $_POST['staff_role'];
-			$zoo_id = $_POST['zoo_id'];
+			$staff_role = $_POST['staff_role'];
+			$zoo_id = $_POST['staff_to_zoo'];
 
 			$stid = oci_parse($conn, "UPDATE STAFF_TABLE SET
 				ZOOID = '$zoo_id', 
@@ -208,13 +209,12 @@
 				LAST_NAME = '$staff_last_name',
 				STAFF_EMAIL = '$staff_email',
 				ROLE = '$staff_role',
-				STAFF_PASSWORD = '$staff_password',
+				STAFF_PASSWORD = '$staff_password'
 				WHERE STAFF_ID LIKE '$staff_id'");
 
 			$exe = oci_execute($stid);
 			executionError($exe);
 
-			//TOCHECK;
 		}
 
 		if(isset($_POST['get_all_staff_submit'])){
@@ -223,19 +223,18 @@
 			executionError($exe);
 			outputWithTable($stid);
 
-			//TOCHECK;
 		}
 
-		if(isset($_POST['get_satff_submit'])){
+		if(isset($_POST['get_staff_submit'])){
 			$id = $_POST['get_staff_by_id'];
 			if(empty($id)){
 				someError();
 			}
-			$stid = oci_parse($conn, "DELETE FROM STAFF_TABLE WHERE STAFF_ID LIKE '$id'");
+			$stid = oci_parse($conn, "SELECT * FROM STAFF_TABLE WHERE STAFF_ID LIKE '$id'");
 			$exe = oci_execute($stid);
 			executionError($exe);
+			outputWithTable($stid);
 
-			//TOCHECK
 		}
 
 
@@ -283,7 +282,7 @@
 			echo "<table border='1'>\n";
 			$ncols = oci_num_fields($stid);
 
-			echo "<tr>\n";
+			echo "<tr class = 'column_name_row'>\n";
 			for ($i = 1; $i <= $ncols; $i++) {
 			    $column_name  = oci_field_name($stid, $i);
 			    echo "<td>$column_name</td>\n";
