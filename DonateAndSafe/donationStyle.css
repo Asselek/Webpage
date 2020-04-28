@@ -20,6 +20,7 @@ body {
 }
 
 .header a.logo {
+  border: 3px solid #FFD700;
   background-color: #555;
   font-size: 25px;
   font-weight: bold;
@@ -49,7 +50,7 @@ body {
   display: flex;
 }
 .contents{
-  border: 2px solid transparent;
+  border: 3px solid #FFD700;
   background-color: #2ecc71;
   border-radius: 10px;
   position: absolute;
