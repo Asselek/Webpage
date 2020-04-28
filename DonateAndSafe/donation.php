@@ -21,7 +21,7 @@
         <input type="text" id="cardNumber" name="cardNumber" placeholder="KZXXXXXXXXX">
         <label for="lname">Amount of money which you want to give:</label>
         <input type="text" id="amount" name="amount" placeholder="Amount">
-        <input class="btn" type="button" value="donate">
+        <input class="btn" name="submit" type="submit" value="donate">
       </form>
     </div>
   </div>
