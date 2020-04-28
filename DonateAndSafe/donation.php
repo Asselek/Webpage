@@ -6,7 +6,7 @@
 </head>
 <body style="overflow-x: hidden; overflow-y: hidden;">
   <div class="header">
-  <a href="#" class="logo">Go Home</a>
+  <a href="/index.php" class="logo">Go Home</a>
   <div class="header-right">
   </div>
 </div>
@@ -42,10 +42,21 @@
         $stid3 = oci_parse($conn, "SELECT SUM(AMOUNT) FROM DONATE");
         $stid4 = oci_parse($conn, "SELECT MAX(AMOUNT) FROM DONATE");
 
-        echo "<p>How many times have been donated: </p><p>".$stid1."</p>";
-        echo "<p>How much money do we get from donation: </p><p>".$stid2."</p>";
-        echo "<p>Average donation per person: </p><p>".$stid3."</p>";
-        echo "<p>Big donation: </p><p>".$stid4."</p>";
+        $e1 = oci_execute($stid1);
+        $e2 = oci_execute($stid2);
+        $e3 = oci_execute($stid3);
+        $e4 = oci_execute($stid4);
+
+
+        $row1 = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS);
+         $row2 = oci_fetch_array($stid2, OCI_ASSOC+OCI_RETURN_NULLS);
+          $row3 = oci_fetch_array($stid3, OCI_ASSOC+OCI_RETURN_NULLS);
+           $row4 = oci_fetch_array($stid4, OCI_ASSOC+OCI_RETURN_NULLS);     
+
+        echo "<p>How many times have been donated: </p><p>".$row1['COUNT(*)']."</p>";
+        echo "<p>How much money do we get from donation: </p><p>".$row2['AVG(AMOUNT)']."</p>";
+        echo "<p>Average donation per person: </p><p>".$row3['SUM(AMOUNT)']."</p>";
+        echo "<p>Big donation: </p><p>".$row4['MAX(AMOUNT)']."</p>";
     ?>
   </div>
 </div>
