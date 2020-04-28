@@ -115,7 +115,7 @@
 			</form>
 
 		</div>
-
+<div style='text-align: center;'>©Desgined by Toleubay Alikhan</div>
 
 	</div>
 
