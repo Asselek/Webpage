@@ -42,14 +42,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $amount = $_POST['amount'];
 
   if(empty($nickname) || empty($cardNumber) || empty($amount)){
-    echo "You didn't fill all fields.";
+    echo "<p class='error'>You didn't fill all fields.</p>";
     exit(1);
   }
 
   $conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
 
   if(!$conn){
-    echo "Oops somethings happened";
+    echo "<p class='error'>Oops somethings happened</p>";
     exit(0);
   }
   echo "something";
