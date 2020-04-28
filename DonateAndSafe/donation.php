@@ -17,7 +17,7 @@
     <h1>Donation to the zoo</h1>
     <p>All money will be transferred to the convenience of animals!</p>
 
-    <form>
+    <form method="POST">
       <label for="fname">Enter your Name or Nickname:</label>
       <input type="text" id="nickname" name="nickname" placeholder="Nickname">
       <label for="lname">Credit card number:</label>
@@ -32,6 +32,7 @@
     <h2>Statistics</h2>
     <?php
       if(isset($_GET['look'])){
+        $conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
         echo "<p>How many times have been donated: </p><p>"."</p>";
         echo "<p>How much money do we get from donation: </p><p>"."</p>";
         echo "<p>Average donation per person: </p><p>"."</p>";
@@ -46,5 +47,42 @@
 </html>
 
 <?php
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+  $nickname = $_POST['nickname'];
+  $cardNumber = $_POST['cardNumber'];
+  $amount = $_POST['amount'];
+
+  if(empty($nickname) || empty($cardNumber) || empty($amount)){
+    echo "You didn't fill all fields.";
+    exit(1);
+  }
+
+  $conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
+
+  if(!$conn){
+    echo "Oops somethings happened";
+    exit(0);
+  }
+
+  $stid = oci_parse($conn, "INSERT INTO DONATION (DONATID, AMOUNT, CARDNUMBER) VALUES (DONATION_ID_SEQ.nextval" . ",'" . $amount . "','" . $cardNumber . "')");
+  $exe = oci_execute($stid);
+
+  if(!$exe){
+    $error_handler = oci_error($exe);
+    print htmlentities($e['message']);
+      print "\n<pre>\n";
+      print htmlentities($e['sqltext']);
+      printf("\n%".($e['offset']+1)."s", "^");
+      print  "\n</pre>\n";
+      die(1);
+  }
+  
+
+  oci_close($conn);
+
+  header("Location: donation.php");
+
+}
 
 ?>
