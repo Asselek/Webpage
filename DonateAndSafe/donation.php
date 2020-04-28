@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     exit(0);
   }
 
-  $stid = oci_parse($conn, "INSERT INTO DONATION (DONATID, AMOUNT, CARDNUMBER) VALUES (DONATION_ID_SEQ.nextval" . ",'" . $amount . "','" . $cardNumber . "')");
+  $stid = oci_parse($conn, "INSERT INTO DONATE (DONATID, AMOUNT, CARDNUMBER) VALUES (DONATE_ID_SEQ.nextval" . ",'" . $amount . "','" . $cardNumber . "')");
   $exe = oci_execute($stid);
 
   if(!$exe){
