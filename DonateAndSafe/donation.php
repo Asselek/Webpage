@@ -22,6 +22,7 @@
         <label for="lname">Amount of money which you want to give:</label>
         <input type="text" id="amount" name="amount" placeholder="Amount">
         <input class="btn" name="submit" type="submit" value="donate">
+        <div class="bot">&copy; Designed by Darkhan</div>
       </form>
     </div>
   </div>
@@ -29,7 +30,6 @@
     <p></p>
   </div>
 </div>
-    <footer><p class="bot">&copy; Designed by Darkhan</p></footer>
 </body>
 </html>
 
