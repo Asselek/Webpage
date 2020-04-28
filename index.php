@@ -31,8 +31,8 @@
 		</div>
 
 		<div class = "buttons_after_logo_buttons">
-			<a class = "hvr-shutter-out-vertical" href = "/DonateAndSafe/donationPage.html" id = "a_link" >DONATE & SAFE </a>
-			<a class = "hvr-shutter-out-vertical" href="/EventPage/events.html" id = "a_link">EVENTS</a>
+			<a class = "hvr-shutter-out-vertical" href = "/DonateAndSafe/donation.php" id = "a_link" >DONATE & SAFE </a>
+			<a class = "hvr-shutter-out-vertical" href="/EventPage/events.php" id = "a_link">EVENTS</a>
 
 		</div>
 		
@@ -53,7 +53,7 @@
 			if(isset($_GET['name'])){
 
 				if(strpos($_GET['name'], "Admin")){
-					echo '<div class = "UGA_block"><img class = "UGA_logo admin" src="https://cdn2.iconfinder.com/data/icons/veterinary-line-fluffy-pet/512/First_aid_pet-128.png"><div id = "centered_text">YOU ARE ADMIN<a class = "hvr-shutter-out-vertical admin_page_css" href="/AdminPage/adminPage.php" target="_blank" >GO TO ADMIN PAGE</a></div><a href="/index.php">exit</a></div>';
+					echo '<div class = "UGA_block"><img class = "UGA_logo admin" src="https://cdn2.iconfinder.com/data/icons/veterinary-line-fluffy-pet/512/First_aid_pet-128.png"><div id = "centered_text">YOU ARE ADMIN<a class = "hvr-shutter-out-vertical admin_page_css" href="/AdminPage/adminPage.php" target="_blank" >GO TO ADMIN PAGE</a></div><a class = "exit_link" href="/index.php">exit</a></div>';
 				}
 				
 				else if(strpos($_GET['name'], "User")){
@@ -63,7 +63,7 @@
 
 					echo '<div id = "centered_text">Welcome ' . $_GET['name'] . '</div>';
 
-					echo '<a href="/index.php">exit</a></div>';
+					echo '<a class = "exit_link"  href="/index.php">exit</a></div>';
 				}
 
 				else{
@@ -73,7 +73,7 @@
 
 					echo '<div id = "centered_text">Welcome ' . $_GET['name'] . '</div>';
 
-					echo '<a href="/index.php">exit</a></div>';
+					echo '<a class = "exit_link"  href="/index.php">exit</a></div>';
 				}
 
 			}
@@ -230,9 +230,125 @@ continent except Australia and Antarctica. </div>
 					<option value = "Descending">Descending</option>
 				</select>
 
+
+				<?php 
+
+				if(isset($_GET['name'])){
+					if(strpos($_GET['name'], "Staff") || strpos($_GET['name'], "Admin")){
+
+
+						echo '<div class = "left_content">Join Staff And Zoo</div>';
+						echo '<input id="staff_zoo_input" min=0 type="number" name= "get_zoo_id_join"  placeholder="ZOO ID">';
+						echo '<input id="staff_zoo_join" type ="submit" name = "JOIN" value="JOIN(ONLY ZOO ID)">';
+
+
+					}
+				}
+					
+
+				if(isset($_POST['JOIN'])){
+					$zooooid  = $_POST['get_zoo_id_join'];
+					$conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
+					$stid = oci_parse($conn, "SELECT S.ZOOID, S.FIRST_NAME, S.LAST_NAME, S.STAFF_EMAIL, Z.ADDRESS, Z.ZOO_EMAIL, Z.ZOO_NAME FROM STAFF_TABLE S JOIN ZOO Z ON(S.ZOOID = Z.ZOOID) WHERE Z.ZOOID = " . $zooooid);
+
+					$exe = oci_execute($stid);
+
+					global $tio;
+
+					$tio = "";
+
+					$tio .="<table border='1'>\n";
+					$ncols = oci_num_fields($stid);
+
+					$tio .= "<tr class = 'column_name_row'>\n";
+					for ($i = 1; $i <= $ncols; $i++) {
+					    $column_name  = oci_field_name($stid, $i);
+					    $tio .= "<td>$column_name</td>\n"; 
+					}
+					$tio .= "</tr>\n";
+
+					while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
+		    			$tio .= "<tr>\n";
+		    			foreach ($row as $item) {
+	    					$tio .= "<td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
+		    			}
+		    			$tio .= "</tr>\n";
+					}
+					$tio .= "</table>\n";
+
+				}
+
+
+				?>
+
+
 				<input id = "animal_find_input" type="submit" name="animal_find" value = "Find animal">
 
 				<input id = "animal_find_input" type="submit" name="give_all" value = "Select all">
+				
+				<?php
+				if(isset($_GET['name'])){
+					if(strpos($_GET['name'], "Staff") || strpos($_GET['name'], "Admin")){
+						echo "<div class = 'left_content'>ROLLUP OR CUBE (Food/Gen w Ani.)</div>";
+						echo "<select name='foodOrGen'>";
+							echo "<option value='FOOD_ID'>FOOD ID</option>";
+							echo "<option value='GENUS'>GENUS</option>";
+						echo "</select>";
+						echo "<select name='RollupOrCube'>";
+							echo "<option value='ROLLUP'>ROLLUP</option>";
+							echo "<option value='CUBE'>CUBE</option>";
+						echo "</select>";
+
+						echo '<input id="roll_cube" type ="submit" name = "rollup_cube" value="ROLLUP/CUBE">';
+					}
+
+					if(isset($_POST['rollup_cube'])){
+						$foodOrGen = $_POST['foodOrGen'];
+						$RollupOrCube = $_POST['RollupOrCube'];
+
+						$conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
+						$query = "SELECT ";
+
+						if($foodOrGen == "FOOD_ID"){
+							$query .= "NVL(". $foodOrGen . ", -1) AS FOOD_ID, NVL(GENUS, 'NOT FOUND') AS GENUS, TRUNC(AVG(AGE),2) AS AVGAGE FROM ANIMALS GROUP BY " . $RollupOrCube . "(FOOD_ID, GENUS)";
+						}
+						else{
+							$query .= "NVL(" . $foodOrGen . ",'NOT FOUND') AS GENUS,CASE WHEN FOOD_ID IS NULL THEN -1 ELSE FOOD_ID END AS FOOD_ID, TRUNC(AVG(AGE),2) AS AVGAGE FROM ANIMALS GROUP BY " . $RollupOrCube . "(GENUS, FOOD_ID)";
+						}
+						//echo $query;
+						$stid = oci_parse($conn, $query);
+
+						$exe = oci_execute($stid);
+
+						global $mio;
+
+						$mio = "";
+
+						$mio .="<table border='1'>\n";
+						$ncols = oci_num_fields($stid);
+
+						$mio .= "<tr class = 'column_name_row'>\n";
+						for ($i = 1; $i <= $ncols; $i++) {
+						    $column_name  = oci_field_name($stid, $i);
+						    $mio .= "<td>$column_name</td>\n"; 
+						}
+						$mio .= "</tr>\n";
+
+						while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
+			    			$mio .= "<tr>\n";
+			    			foreach ($row as $item) {
+		    					$mio .= "<td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
+			    			}
+			    			$mio .= "</tr>\n";
+						}
+						$mio .= "</table>\n";
+
+					}
+				}
+					
+				?>
+
+
 				</form>
 
 				<?php 
@@ -241,7 +357,7 @@ continent except Australia and Antarctica. </div>
 
 							
 					}
-					else if(strpos($_GET['name'], "User")){
+					else if(strpos($_GET['name'], "User") || strpos($_GET['name'], "Staff") || strpos($_GET['name'], "Admin")){
 					
 						if($_SERVER["REQUEST_METHOD"] == 'POST'){
 
@@ -260,8 +376,7 @@ continent except Australia and Antarctica. </div>
 								$selected_order = $_POST['OrderBy'];
 								$ascOrDesc = $_POST['AscDesc'];
 
-
-								$query = "SELECT * FROM ANIMALS A JOIN ZOO Z ON ( '" . $selected_zoo_name . "' = Z.ADDRESS) WHERE A.ANIMAL_NAME LIKE '" . $selected_animal . "' ORDER BY A." . $selected_order . " " . ($ascOrDesc == "Ascending" ? "ASC" : "DESC");
+								$query = "SELECT * FROM ANIMALS WHERE ANIMAL_NAME LIKE '" . $selected_animal . "' AND ZOOID = (SELECT ZOOID FROM ZOO WHERE ADDRESS LIKE '" . $selected_zoo_name . "') ORDER BY " . $selected_order . " " . ($ascOrDesc == "Ascending" ? "ASC" : "DESC");
 
 								$stid = oci_parse($conn, $query);
 								createJson($stid);
@@ -295,7 +410,7 @@ continent except Australia and Antarctica. </div>
 					}
 
 					function someError(){
-						echo "<div class = 'animal_output'>Youve done something wrong!<div>";
+						echo "<div class = 'animal_output'>You've done something wrong!<div>";
 						die(2);
 					}
 
@@ -306,16 +421,27 @@ continent except Australia and Antarctica. </div>
 
 			<div id = "animal_output">
 
+			<?php 
+				if(isset($_POST['JOIN'])){
+					echo $tio;
+				}
+
+				if(isset($_POST['rollup_cube'])){
+					echo $mio;
+				}
+			?>
+
+
 
 				<script>
 					
 					<?php 
-						if(!isset($_GET['name'])){
-							echo "await";
+						if(!isset($_GET['name']) || isset($_POST['JOIN']) || isset($_POST['rollup_cube'])){
+							echo "dontMove";
 						}
 						else{
 							echo "";
-							echo
+							
 						}
 					?>fetch('animalsJSON.json').then(response => response.json())
 						.then(function(data) {
