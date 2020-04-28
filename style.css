@@ -271,8 +271,16 @@ input:focus, textarea:focus, select:focus, button:focus{
 	cursor: pointer;
 	width: 171px;
 }
+#staff_zoo_join, #roll_cube{
+	cursor: pointer;
+	width: 171px;
+}
 
-
+#staff_zoo_input {
+	width: 171px;
+	background-color: white;
+	color: black;
+}
 
 .sticky_end{
 	margin-top: 100px;
@@ -374,6 +382,7 @@ select{
 
 #animal_output{
 	overflow: scroll;
+	scroll-behavior: smooth;
 	border-left: 1px solid green;
 	margin-left: 10px;
 	background-image: url('https://cdn0.iconfinder.com/data/icons/isometric-farm-animals/160/dog-03-128.png');
@@ -409,3 +418,9 @@ select{
   	width:450px;
   	height:450px;
 }
+
+.exit_link{
+	color: black;
+	font-size: 20px;
+}
+
