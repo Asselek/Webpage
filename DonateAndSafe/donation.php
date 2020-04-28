@@ -1,4 +1,4 @@
-<html>
+<<html>
 <head>
   <title>Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,7 +6,7 @@
 </head>
 <body style="overflow-x: hidden; overflow-y: hidden;">
   <div class="header">
-  <a href="/index.php" class="logo">Go Home</a>
+  <a href="#" class="logo">Go Home</a>
   <div class="header-right">
   </div>
 </div>
@@ -16,7 +16,7 @@
     <h1>Donation to the zoo</h1>
     <p>All money will be transferred to the convenience of animals!</p>
 
-    <form>
+    <form method="POST">
       <label for="fname">Enter your Name or Nickname:</label>
       <input type="text" id="nickname" name="nickname" placeholder="Nickname">
       <label for="lname">Credit card number:</label>
@@ -24,6 +24,7 @@
       <label for="lname">Amount of money which you want to give:</label>
       <input type="text" id="amount" name="amount" placeholder="Amount">
       <input class="btn" name="submit" type="submit" value="donate">
+      <p class="bot">&copy; Designed by Darkhan</p>
     </form>
   </div>
   </div>
@@ -49,9 +50,9 @@
 
 
         $row1 = oci_fetch_array($stid1, OCI_ASSOC+OCI_RETURN_NULLS);
-         $row2 = oci_fetch_array($stid2, OCI_ASSOC+OCI_RETURN_NULLS);
-          $row3 = oci_fetch_array($stid3, OCI_ASSOC+OCI_RETURN_NULLS);
-           $row4 = oci_fetch_array($stid4, OCI_ASSOC+OCI_RETURN_NULLS);     
+        $row2 = oci_fetch_array($stid2, OCI_ASSOC+OCI_RETURN_NULLS);
+        $row3 = oci_fetch_array($stid3, OCI_ASSOC+OCI_RETURN_NULLS);
+        $row4 = oci_fetch_array($stid4, OCI_ASSOC+OCI_RETURN_NULLS);     
 
         echo "<p>How many times have been donated: </p><p>".$row1['COUNT(*)']."</p>";
         echo "<p>How much money do we get from donation: </p><p>".$row2['AVG(AMOUNT)']."</p>";
@@ -60,7 +61,6 @@
     ?>
   </div>
 </div>
-    <footer><p class="bot">&copy; Designed by Darkhan</p></footer>
 </body>
 </html>
 
@@ -76,7 +76,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     echo "<p class='error'>You didn't fill all fields.</p>";
     exit(1);
   }
-
+  
+  if(!empty($nickname) && !empty($cardNumber) && !empty($amount)){
+    echo "<p class='error2'>Thanks for your donation!</p>";
+  }
+  
   $conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
 
   if(!$conn){
