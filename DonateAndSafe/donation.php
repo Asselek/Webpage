@@ -4,42 +4,29 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="donationStyle.css" rel="stylesheet" type="text/css">
 </head>
-<body style="overflow-x: hidden; overflow-y: hidden;">
+<body>
 	<div class="header">
   <a href="#" class="logo">Go Home</a>
-  <div class="header-right">
-    <a href="donation.php?look=yes">Look at statistics</a>
-  </div>
 </div>
 <div class="container">
   <div class="contents">
     <div class="inside">
-    <h1>Donation to the zoo</h1>
-    <p>All money will be transferred to the convenience of animals!</p>
+      <h1>Donation to the zoo</h1>
+      <p>All money will be transferred to the convenience of animals!</p>
 
-    <form method="POST">
-      <label for="fname">Enter your Name or Nickname:</label>
-      <input type="text" id="nickname" name="nickname" placeholder="Nickname">
-      <label for="lname">Credit card number:</label>
-      <input type="text" id="cardNumber" name="cardNumber" placeholder="KZXXXXXXXXX">
-      <label for="lname">Amount of money which you want to give:</label>
-      <input type="text" id="amount" name="amount" placeholder="Amount">
-      <input class="btn" type="button" value="donate">
-    </form>
+      <form method="POST">
+        <label for="fname">Enter your Name or Nickname:</label>
+        <input type="text" id="nickname" name="nickname" placeholder="Nickname">
+        <label for="lname">Credit card number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" placeholder="KZXXXXXXXXX">
+        <label for="lname">Amount of money which you want to give:</label>
+        <input type="text" id="amount" name="amount" placeholder="Amount">
+        <input class="btn" type="button" value="donate">
+      </form>
+    </div>
   </div>
-  </div>
-  <div class="donationChar">
-    <h2>Statistics</h2>
-    <?php
-      if(isset($_GET['look'])){
-        $conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
-        echo "<p>How many times have been donated: </p><p>"."</p>";
-        echo "<p>How much money do we get from donation: </p><p>"."</p>";
-        echo "<p>Average donation per person: </p><p>"."</p>";
-        echo "<p>Big donation: </p><p>"."</p>";
-          
-      }
-    ?>
+  <div class="photos">
+    <p></p>
   </div>
 </div>
     <footer><p class="bot">&copy; Designed by Darkhan</p></footer>
@@ -65,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     exit(0);
   }
 
-  $stid = oci_parse($conn, "INSERT INTO DONATE (DONATID, AMOUNT, CARDNUMBER) VALUES (DONATE_ID_SEQ.nextval" . ",'" . $amount . "','" . $cardNumber . "')");
+  $stid = oci_parse($conn, "INSERT INTO DONATION (DONATID, AMOUNT, CARDNUMBER) VALUES (DONATION_ID_SEQ.nextval" . ",'" . $amount . "','" . $cardNumber . "')");
   $exe = oci_execute($stid);
 
   if(!$exe){
