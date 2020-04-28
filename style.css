@@ -271,15 +271,7 @@ input:focus, textarea:focus, select:focus, button:focus{
 	cursor: pointer;
 	width: 171px;
 }
-.animal_output{
-	overflow: scroll;
-	border-left: 1px solid green;
-	margin-left: 10px;
-	background-image: url('https://cdn0.iconfinder.com/data/icons/isometric-farm-animals/160/dog-03-128.png');
-	background-position: center;
-	background-repeat: no-repeat;
-	width: 100%;
-}
+
 
 
 .sticky_end{
@@ -304,17 +296,6 @@ a{
     text-decoration: none;
    font-family: 'Spartan', sans-serif;
 }
-/*#a_link{
-	text-decoration: none;
-	color:green;	
-}
-
-#a_link:hover{
-	background-color: green;
-	color: white;
-	font-size: 25px;
-	margin-bottom: -7px;
-}*/
 
 
 .SMM{
@@ -380,15 +361,51 @@ select{
 
 .animal_block{
 	width: 100%;
-	display: flex;	
+	display: flex;
+	margin: 15px;	
 }
 
 
-.animal_right_text{
-	width: 100%;
-	display: inline-flex;
-}
+
 
 .go_login{
 	margin-right: 30px;
+}
+
+#animal_output{
+	overflow: scroll;
+	border-left: 1px solid green;
+	margin-left: 10px;
+	background-image: url('https://cdn0.iconfinder.com/data/icons/isometric-farm-animals/160/dog-03-128.png');
+	background-position: left;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+
+.animal_image{
+	width: 100%;
+}
+
+.animal_name, .animal_age, .animal_gender, .animal_genus{
+	font-size: 48px;
+	width: 90%;
+	background-color: lightgreen;
+	color: white;
+	margin: 5px;
+	text-align: center;
+	font-family: 'Spartan', sans-serif;
+}
+
+
+.right_block_side{
+	width: 100%;
+	display: inline-block;
+	margin: auto;
+}
+
+.animal_image_image{
+	width: 100%;
+	object-fit: cover;
+  	width:450px;
+  	height:450px;
 }
