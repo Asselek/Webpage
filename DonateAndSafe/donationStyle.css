@@ -5,9 +5,11 @@ body {
 }
 
 .header {
-  overflow: hidden;
+  overflow: hidden; 
+  background-color: #3498db;  
+  border: 2px solid #2ecc71;  
+  padding: 20px 10px; 
 }
-
 .header a {
   float: left;
   color: yellow;
@@ -25,11 +27,6 @@ body {
   font-size: 25px;
   font-weight: bold;
   border-radius: 24px;
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%, -3%);
-  z-index: 20;
 }
 
 .header a:hover {
@@ -46,19 +43,17 @@ body {
 .header-right {
   float: right;
 }
+.stat{
+  text-decoration: line-through;
+}
 .container{
   display: flex;
 }
-.contents{
-  border: 3px solid #FFD700;
-  background-color: #2ecc71;
-  border-radius: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -45%);
+.contents{ 
+  border: 2px solid transparent; 
+  background-color: #2ecc71; 
+  width: 35%;
   text-align: center;
-  padding-bottom: 10px;
 }
 .inside{
   position: relative;
@@ -69,14 +64,20 @@ body {
   color: purple;
   padding: 10px;
 }
-.photos{
+.donationChar{
+  border: 2px solid black;
+  width: 65%;
+  min-height: 100vh;
+  text-align: center;
+}
+/*.photos{
   width: 100%;
   min-height: 100vh;
   background-image: url(https://thewallpaper.co//wp-content/uploads/2016/05/cute-wildlife-zoo-pet-photo-high-resolution-desktop-images-animal-background-images-adorable-animals-1920x1080.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
+}*/
 @media screen and (max-width: 500px) {
   .header a {
     float: none;
@@ -140,3 +141,22 @@ input[type=text]:focus {
   color: red;
   transform: translate(-50%, -40%);
 }
+/*
+.statisticBoard{
+  border: 2px solid #FFD700;
+  background-color: white; 
+  width: 330px;
+  height: 200px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  z-index: 10;
+}*/
+
+
+
+
+
+
