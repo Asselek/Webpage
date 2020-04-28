@@ -43,9 +43,6 @@ body {
 .header-right {
   float: right;
 }
-.stat{
-  text-decoration: line-through;
-}
 .container{
   display: flex;
 }
@@ -69,16 +66,18 @@ body {
   width: 65%;
   min-height: 100vh;
   text-align: center;
-  font-size: 26px;
 }
 .donationChar h2{
   color: #6666ff;
+  font-size: 30px;
 }
 .donationChar .textData{
   color: #003300;
+  font-size: 21px;
 }
 .donationChar .numb{
   color: #990000;
+  font-size: 28px;
 }
 @media screen and (max-width: 500px) {
   .header a {
@@ -150,9 +149,3 @@ input[type=text]:focus {
   left: 160px;
   z-index: 10;
 }
-
-
-
-
-
-
