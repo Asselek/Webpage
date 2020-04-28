@@ -8,6 +8,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Spartan:wght@200&display=swap" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="script.js" type="text/javascript" ></script>
+	<script src="animalsJSON.json" type="text/javascript" ></script>
+
 </head>
 
 <body>
@@ -174,20 +176,20 @@ continent except Australia and Antarctica. </div>
 			
 			<div class = "fill_fields">
 
-				<form method="post">
+				<form method="POST">
 				
 				<div class = "left_content">Select Animal</div>
 				<select name="Animal_name">
 					<?php 
 						$conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
-						$stid = oci_parse($conn, 'SELECT ANIMAL_NAME FROM ANIMALS');
+						$stid = oci_parse($conn, 'SELECT DISTINCT ANIMAL_NAME FROM ANIMALS ORDER BY ANIMAL_NAME');
 						$exe = oci_execute($stid);
 						if(!$exe){
 							someError();
 						}
 
 						while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
-							echo "<option value " . $row['ANIMAL_NAME'] . ">" . $row['ANIMAL_NAME'] . "</option>";
+							echo "<option value ='" . $row['ANIMAL_NAME'] . "'>" . $row['ANIMAL_NAME'] . "</option>";
 						}
 
 						oci_close($conn);
@@ -199,14 +201,14 @@ continent except Australia and Antarctica. </div>
 				<select name="Zoo_name">
 					<?php 
 						$conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
-						$stid = oci_parse($conn, 'SELECT ADDRESS FROM ZOO');
+						$stid = oci_parse($conn, 'SELECT DISTINCT ADDRESS FROM ZOO');
 						$exe = oci_execute($stid);
 						if(!$exe){
 							someError();
 						}
 
 						while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
-							echo "<option value " . $row['ADDRESS'] . ">" . $row['ADDRESS'] . "</option>";
+							echo "<option value ='" . $row['ADDRESS'] . "'>" . $row['ADDRESS'] . "</option>";
 						}
 
 						oci_close($conn);
@@ -236,85 +238,117 @@ continent except Australia and Antarctica. </div>
 				<?php 
 					if(!isset($_GET['name'])){
 						echo "<a href = 'http://localhost/LoginAndSignUpPage/login.php' class = 'go_login'>To select or find please log in or sign up</a>";
-					}
-					else if(strpos(isset($_GET['name']), "User")){
 
+							
+					}
+					else if(strpos($_GET['name'], "User")){
+					
 						if($_SERVER["REQUEST_METHOD"] == 'POST'){
 
 							$conn = oci_connect('SYSTEM', '123', 'localhost/orcl');
 
 							if(isset($_POST['give_all'])){
-								$stid = oci_parse($conn, "SELECT * FROM ANIMALS");
-								$exe = oci_execute($stid);
-								if(!$exe){
-									someError();
-								}
-								outputTheAnimals($stid);
+								$stid = oci_parse($conn, "SELECT IMAGE, ANIMAL_NAME, AGE, GENDER, GENUS FROM ANIMALS ORDER BY ANIMAL_ID");
+								createJson($stid);
+
+								// outputTheAnimals($stid);
 							}
 
-							if(isset($_POST['animal_find'])){
-								$animal_name = $_POST['Animal_name'];
-								$zoo_name = $_POST['Zoo_name'];
-								$order = $_POST['OrderBy'];
+							else if(isset($_POST['animal_find'])){
+								$selected_animal = $_POST['Animal_name'];
+								$selected_zoo_name = $_POST['Zoo_name'];
+								$selected_order = $_POST['OrderBy'];
 								$ascOrDesc = $_POST['AscDesc'];
 
-								$query = "SELECT * FROM ANIMALS A JOIN ZOO Z ON ( " . $zoo_name . " = Z.ADDRESS) ORDER BY A." . $order . " " . ($ascOrDesc == "Ascending" ? "ASC" : "DESC");
+
+								$query = "SELECT * FROM ANIMALS A JOIN ZOO Z ON ( '" . $selected_zoo_name . "' = Z.ADDRESS) WHERE A.ANIMAL_NAME LIKE '" . $selected_animal . "' ORDER BY A." . $selected_order . " " . ($ascOrDesc == "Ascending" ? "ASC" : "DESC");
 
 								$stid = oci_parse($conn, $query);
-								$exe = oci_execute($stid);
-								if(!$exe){
-									someError();
-								}
-								outputTheAnimals($stid);
+								createJson($stid);
 							}
 
 						}
 					}
 				
 
+					function createJson($stid){
+						$response = array();
+						$posts = array();
+						$result = oci_execute($stid);
+						if(!$result){
+							someError();
+						}
+						while($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)){
+							$image = $row['IMAGE'];
+							$a_name = $row['ANIMAL_NAME'];
+							$age = $row['AGE'];
+							$gender = $row['GENDER'];
+							$genus = $row['GENUS'];
+
+							$posts[] = array('image'=>$image, 'animal_name'=>$a_name, 'age'=>$age, 'gender'=>$gender, 'genus'=>$genus);
+						}
+
+						//$response['posts'] = $posts;
+						$fp = fopen('animalsJSON.json', 'w');
+						fwrite($fp, json_encode($posts));
+						fclose($fp);
+					}
+
 					function someError(){
-						echo "<div class = 'animal_output'>You've done something wrong!<div>";
+						echo "<div class = 'animal_output'>Youve done something wrong!<div>";
 						die(2);
 					}
-
-					function outputTheAnimals($stid){
-						echo "<div class = 'animal_output'>";
-
-							echo "<div class = 'animal_block'>";
-			
-							while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS) ) {
-
-				    			//foreach ($row as $item) {
-				    				echo "<div class = 'image_in_animal_block' style='background-image = url('" . $row['IMAGE'] . "');  background-position: center; background-repeat: no-repeat; background-size:cover; height: 100vh; width: 100vw; border: 1px solid green'></div>";
-				    				echo "<div class = 'animal_right_text'>";
-
-				    					echo "<div class = 'animal_name'>" . $row['ANIMAL_NAME'] . "</div>";
-				    					echo "<div class = 'animal_age'>" . $row['AGE'] . "</div>";
-				    					echo "<div class = 'animal_gender'>" . $row['GENDER'] . "</div>";
-				    					echo "<div class = 'animal_genus'>" . $row['GENUS'] . "</div>";
-
-				    				echo "</div>";
-				    			//}
-							}
-
-
-							echo "</div>";
-
-						echo "</div>";
-					}
-
-
 
 				?>
 
 
 			</div>
 
-			<div class = "animal_output">
+			<div id = "animal_output">
+
+
+				<script>
+					
+					<?php 
+						if(!isset($_GET['name'])){
+							echo "await";
+						}
+						else{
+							echo "";
+							echo
+						}
+					?>fetch('animalsJSON.json').then(response => response.json())
+						.then(function(data) {
+							appendData(data);
+						});
+					var image;
+					var name;
+					var gender;
+					var age;
+					var genus;
+					function appendData(data){
+						for(var i = 0; i < data.length; i++){
+
+							i_image = data[i].image;
+							i_name = data[i].animal_name;
+							i_gender = data[i].gender;
+							i_age = data[i].age;
+							i_genus = data[i].genus;
+
+							var image_finder = "<div class='animal_image'><img class ='animal_image_image' src= '" + i_image +"'></div>";
+
+
+							document.getElementById('animal_output').innerHTML += "<div class='animal_block'>" + image_finder + "<div  class='right_block_side'><div class='animal_name'>Animal: " + i_name + "</div><div class='animal_gender'>Gender: " + i_gender + "</div><div class='animal_age'>Age: " + i_age + "</div><div class='animal_genus'>Genus: " +  i_genus + "</div></div></div>";
+						}
+						
+					}
+
+
+				</script>
 
 
 			</div>
-
+				
 		</div>
 
 
