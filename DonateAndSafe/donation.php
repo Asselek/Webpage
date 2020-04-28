@@ -1,11 +1,11 @@
 <html>
 <head>
-	<title>Login</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="donationStyle.css" rel="stylesheet" type="text/css">
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="donationStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div class="header">
+  <div class="header">
   <a href="#" class="logo">Go Home</a>
 </div>
 <div class="container">
@@ -36,6 +36,7 @@
 <?php
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
   $nickname = $_POST['nickname'];
   $cardNumber = $_POST['cardNumber'];
   $amount = $_POST['amount'];
@@ -51,12 +52,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     echo "Oops somethings happened";
     exit(0);
   }
-
-  $stid = oci_parse($conn, "INSERT INTO DONATION (DONATID, AMOUNT, CARDNUMBER) VALUES (DONATION_ID_SEQ.nextval" . ",'" . $amount . "','" . $cardNumber . "')");
+  echo "something";
+  $stid = oci_parse($conn, "INSERT INTO DONATE (DONATEID, AMOUNT, CARDNUMBER) VALUES (DONATION_ID_SEQ.nextval" . ",'" . $amount . "','" . $cardNumber . "')");
   $exe = oci_execute($stid);
 
   if(!$exe){
-    $error_handler = oci_error($exe);
+    $e = oci_error($exe);
     print htmlentities($e['message']);
       print "\n<pre>\n";
       print htmlentities($e['sqltext']);
@@ -68,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   oci_close($conn);
 
-  header("Location: donation.php");
+  //header("Location: donation.php");
 
 }
 
