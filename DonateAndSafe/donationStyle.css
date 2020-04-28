@@ -58,7 +58,7 @@ body {
   left: 50%;
   transform: translate(-50%, -45%);
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 .inside{
   position: relative;
@@ -127,12 +127,8 @@ input[type=text]:focus {
   background-color: green;
   color: white;
 }
-
-footer p{
-  margin: 0;
-  position: absolute;
-  top: 610px;
-  left: 50%;
-  transform: translate(-50%, -60%);
-  z-index: 10;
+.bot{
+  color: black;
+  position: relative;
+  top: 60px;
 }
