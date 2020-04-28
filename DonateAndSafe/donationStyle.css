@@ -69,15 +69,17 @@ body {
   width: 65%;
   min-height: 100vh;
   text-align: center;
+  font-size: 26px;
 }
-/*.photos{
-  width: 100%;
-  min-height: 100vh;
-  background-image: url(https://thewallpaper.co//wp-content/uploads/2016/05/cute-wildlife-zoo-pet-photo-high-resolution-desktop-images-animal-background-images-adorable-animals-1920x1080.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}*/
+.donationChar h2{
+  color: #6666ff;
+}
+.donationChar .textData{
+  color: #003300;
+}
+.donationChar .numb{
+  color: #990000;
+}
 @media screen and (max-width: 500px) {
   .header a {
     float: none;
@@ -131,29 +133,23 @@ input[type=text]:focus {
 .bot{
   color: black;
   position: relative;
-  top: 60px;
+  top: 50px;
 }
 
 .error{
-  position: absolute;
-  top: 84%;
-  left: 50%;
   color: red;
-  transform: translate(-50%, -40%);
-}
-/*
-.statisticBoard{
-  border: 2px solid #FFD700;
-  background-color: white; 
-  width: 330px;
-  height: 200px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  padding-left: 20px;
-  padding-bottom: 20px;
+  position: relative;
+  bottom: 210px;
+  left: 160px;
   z-index: 10;
-}*/
+}
+.error2{
+  color: #002699;
+  position: relative;
+  bottom: 210px;
+  left: 160px;
+  z-index: 10;
+}
 
 
 
